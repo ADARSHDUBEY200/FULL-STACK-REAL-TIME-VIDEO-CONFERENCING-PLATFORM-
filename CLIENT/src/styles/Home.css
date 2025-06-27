@@ -1,0 +1,133 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.landing-page {
+  min-height: 100vh;
+  background: linear-gradient(145deg, #000428 0%, #004e92 100%);
+  color: white;
+  padding: 4rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-section {
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.hero-title {
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+}
+
+.highlight {
+  color: #ff6ec4;
+}
+
+.hero-subtext {
+  font-size: 1.25rem;
+  color: #cccccc;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.button-group {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 0.8rem 2rem;
+  font-size: 1rem;
+  border-radius: 2rem;
+  cursor: pointer;
+  transition: 0.3s ease;
+  border: none;
+  font-weight: 600;
+}
+
+.btn.primary {
+  background-color: #ff6ec4;
+  color: white;
+}
+
+.btn.primary:hover {
+  background-color: #e25bb7;
+}
+
+.btn.outline {
+  background: transparent;
+  border: 2px solid white;
+  color: white;
+}
+
+.btn.outline:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.image-section {
+  margin-top: 4rem;
+  width: 60vw;
+  height: 72vh;
+  display: flex;
+  justify-content: center;
+}
+
+.conference-image {
+  max-width: 90%;
+  width: 100%;
+  border-radius: 2rem;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+  object-fit: cover;
+}
+
+.features-section {
+  margin-top: 6rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 4rem;
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 1rem;
+}
+
+.feature-card {
+  background-color: #1e1e2f;
+  padding: 2rem;
+  height: 40vh;
+  width: 25vw;
+  border-radius: 1.5rem;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: scale(1.05);
+}
+
+.feature-icon {
+  color: #ff6ec4;
+  margin-bottom: 1rem;
+}
+
+.feature-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.feature-desc {
+  color: #ccc;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}

@@ -1,0 +1,273 @@
+ * {
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+ }
+
+ .Meeting-main-container {
+     font-family: 'Outfit', sans-serif;
+     background: linear-gradient(135deg, #e0eafc, #cfdef3);
+     min-height: 100vh;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     color: #333;
+ }
+
+ .Meeting-container {
+     width: 95vw;
+     height: 95vh;
+     background: rgba(255, 255, 255, 0.7);
+     border-radius: 20px;
+     box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+     display: flex;
+ }
+
+ .Video-main-content {
+     width: 68%;
+     height: 100%;
+     padding: 20px;
+     border-right: 1px solid rgba(0, 0, 0, 0.1);
+ }
+
+ .main-speaker {
+     width: 100%;
+     height: 50vh;
+     box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+     border-radius: 16px;
+     border: 10px solid rgba(255, 255, 250);
+ }
+
+ .main-speaker video {
+     width: 100%;
+     height: 100%;
+     object-fit: cover;
+ }
+
+ .main-speaker:hover {
+     cursor: pointer;
+     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+ }
+
+
+ .video-participants {
+     display: flex;
+     align-items: center;
+     width: 100%;
+     height: 32vh;
+     gap: 15px;
+     margin-top: 15px;
+     padding: 0px 0.7rem 0px 0.7rem;
+     border-radius: 16px;
+     box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+     overflow-x: scroll !important;
+     scroll-behavior: smooth;
+ }
+
+ .video-box {
+     flex: 0 0 auto;
+     width: 25vw;
+     height: 28vh;
+     background: #fff;
+     border-radius: 12px;
+     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+     font-weight: 600;
+     font-size: 14px;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+ }
+
+ .video-box video {
+     width: 100%;
+     height: 100%;
+     border-radius: 12px;
+     object-fit: cover;
+ }
+
+ .video-box:hover {
+     cursor: pointer;
+     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+ }
+
+ .controls {
+     display: flex;
+     justify-content: center;
+     margin-top: 20px;
+     gap: 15px;
+ }
+
+ .controls button {
+     padding: 10px 16px;
+     border-radius: 50px;
+     border: none;
+     background: linear-gradient(45deg, #89f7fe, #66a6ff);
+     color: #fff;
+     font-weight: 600;
+     cursor: pointer;
+     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+     transition: 0.3s;
+ }
+
+ .controls button:hover {
+     transform: scale(1.05);
+ }
+
+ .sidebar {
+     flex: 1.2;
+     padding: 20px;
+     display: flex;
+     flex-direction: column;
+     gap: 20px;
+ }
+
+ .card {
+     background: rgba(255, 255, 255, 0.6);
+     backdrop-filter: blur(16px);
+     border-radius: 15px;
+     padding: 15px;
+     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+     max-height: 25vh;
+     display: flex;
+     flex-direction: column;
+     overflow-y: scroll;
+ }
+
+ .card:hover {
+     cursor: pointer;
+     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+ }
+
+ .card h3 {
+     font-size: 18px;
+     color: #222;
+     margin-bottom: 10px;
+     position: sticky;
+     top: 0;
+     background: rgba(255, 255, 255, 0.6);
+     backdrop-filter: blur(12px);
+     padding-bottom: 5px;
+     z-index: 2;
+ }
+
+ .participants-list {
+     overflow-y: auto;
+     max-height: 240px;
+     padding-right: 5px;
+ }
+
+ .participant {
+     display: flex;
+     align-items: center;
+     margin-bottom: 10px;
+     font-size: 14px;
+ }
+
+ .participant img {
+     width: 30px;
+     height: 30px;
+     border-radius: 50%;
+     margin-right: 10px;
+ }
+
+ .cardChat {
+     height: 70vh;
+     position: relative;
+     padding: 1rem;
+     width: 100%;
+     background: rgba(255, 255, 255, 0.6);
+     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+     border-radius: 15px;
+ }
+
+
+ .cardChat:hover {
+     cursor: pointer;
+     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+ }
+
+ .chat-message {
+     display: flex;
+     align-items: flex-start;
+     margin-bottom: 10px;
+     font-size: 14px;
+ }
+
+ .chat-message img {
+     width: 30px;
+     height: 30px;
+     border-radius: 50%;
+     margin-right: 10px;
+ }
+
+ .chat-message p {
+     background: #f0f4ff;
+     padding: 10px;
+     border-radius: 10px;
+ }
+
+ .chatBox {
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     width: 100%;
+     position: absolute;
+     bottom: 5px;
+ }
+
+
+ .chatBox input {
+     padding: 14px 6rem 14px 2rem ;
+     border: none;
+     border-radius: 12px;
+     background: rgba(255, 255, 255, 0.1);
+     color: black;
+     font-size: 16px;
+     transition: 0.3s;
+     box-shadow: inset 1px 1px 6px rgba(0, 0, 0, 0.4), inset -1px -1px 4px rgba(255, 255, 255, 0.05);
+ }
+
+ .chatBox input:hover{
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(0, 204, 255, 0.5);
+ }
+
+ .chatBox button {
+     border-radius: 50%;
+     margin:0 0 0 1rem;
+     border: 2px solid skyblue;
+     padding: 1rem;
+     background: skyblue;
+     transition: 0.3s;
+     color: white;
+
+ }
+
+ .chatBox button:hover {
+    cursor: pointer;
+     background-color: blue;
+     border: 2px solid blue;
+ }
+
+ @media (max-width: 960px) {
+     .Meeting-container {
+         flex-direction: column;
+     }
+
+     .Video-main-content {
+         width: 100%;
+         border-right: none;
+         border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+     }
+
+     .sidebar {
+         flex-direction: row;
+         gap: 10px;
+         flex-wrap: wrap;
+     }
+
+     .card {
+         flex: 1;
+         min-width: 200px;
+     }
+ }

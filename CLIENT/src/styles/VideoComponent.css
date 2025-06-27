@@ -1,0 +1,123 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+.main-container {
+    background: linear-gradient(to right top, #0f2027, #203a43, #2c5364);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+}
+
+.main-container h1 {
+    font-size: 3rem;
+    text-align: center;
+    background: linear-gradient(90deg, #00c6ff, #0072ff);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 5px 20px rgba(0, 114, 255, 0.3);
+    margin-bottom: 40px;
+    font-weight: 700;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+    width: 100%;
+    max-width: 80vw;
+}
+
+.video-container {
+    border-radius: 16px;
+    width: 40vw;
+    height: 50vh;
+    transition: 0.5s ease ;
+    box-shadow: 0 0 30px rgba(0, 136, 255, 0.4);
+}
+
+.video-container:hover{
+    cursor: pointer;
+     box-shadow: 0 0 90px rgba(0, 136, 255, 0.4);
+}
+
+.video-container video {
+    border-radius: 16px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+.form-area {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    max-width: 400px;
+}
+
+.form-area input {
+    padding: 14px 18px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-size: 16px;
+    transition: 0.3s;
+    box-shadow: inset 1px 1px 6px rgba(0, 0, 0, 0.4), inset -1px -1px 4px rgba(255, 255, 255, 0.05);
+}
+
+
+.form-area input:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(0, 204, 255, 0.5);
+}
+
+.form-area button {
+    padding: 14px;
+    margin-bottom: 1.5rem;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #00f5c9, #5b5eff);
+    color: #000;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+
+.form-area button:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 25px rgba(0, 245, 201, 0.3);
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.2rem;
+    }
+
+    .container {
+        flex-direction: column;
+        padding: 25px;
+    }
+
+    video {
+        width: 100%;
+    }
+}
+
