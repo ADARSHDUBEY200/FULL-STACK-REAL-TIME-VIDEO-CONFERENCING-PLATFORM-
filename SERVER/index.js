@@ -18,7 +18,7 @@ const io = connectToSocket(server);
 app.set("port",process.env.PORT || 3000);
 
 app.use(cors({
-  origin: ["http://localhost:5173"],
+  origin: ["https://full-stack-real-time-video-conferencing-5r1k.onrender.com"],
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true,
 }));
