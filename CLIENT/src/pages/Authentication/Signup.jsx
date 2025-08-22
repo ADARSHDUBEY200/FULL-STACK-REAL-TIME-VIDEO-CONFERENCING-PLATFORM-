@@ -24,7 +24,7 @@ const Signup = ({ func }) => {
     const handleLogin = async (event) => {
 
         event.preventDefault();
-        const response = await axios.post("http://localhost:3000/signup", { ...formData }, {withCredentials: true})
+        const response = await axios.post("https://full-stack-real-time-video-conferencing.onrender.com/signup", { ...formData }, {withCredentials: true})
         console.log(response);
         const { message, success , user} = response.data;
         console.log(message);

@@ -21,7 +21,7 @@ const Login = ({ func }) => {
 
     const handleLogin = async (event) => {
         event.preventDefault();
-        const response = await axios.post("http://localhost:3000/login", { ...formData }, {withCredentials : true});
+        const response = await axios.post("https://full-stack-real-time-video-conferencing.onrender.com/login", { ...formData }, {withCredentials : true});
 
         const { message, success } = response.data;
 

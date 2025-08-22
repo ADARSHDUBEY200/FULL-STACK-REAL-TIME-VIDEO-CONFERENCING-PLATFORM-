@@ -48,12 +48,12 @@ const Meeting = () => {
             if (!token) {
                 navigate("/signup");
             }
-            const response = await axios.post("http://localhost:3000/video", {}, {withCredentials : true});
+            const response = await axios.post("https://full-stack-real-time-video-conferencing.onrender.com/video", {}, {withCredentials : true});
             const {status} = response.data;
 
             if (status) {
                 getMediaOfUser().then(() => {
-                    socketRef.current = io.connect("http://localhost:3000"); // when new socket is connected
+                    socketRef.current = io.connect("https://full-stack-real-time-video-conferencing.onrender.com"); // when new socket is connected
 
                     socketIdRef.current = socketRef.current.id
 
@@ -361,7 +361,7 @@ const Meeting = () => {
 
     const handleAiChat = async () => {
         const prompt = aichatText;
-        const response = await axios.post("http://localhost:3000/api/ai", { prompt });
+        const response = await axios.post("https://full-stack-real-time-video-conferencing.onrender.com/api/ai", { prompt });
 
         console.log("The response of the ai is : ");
         console.log(response.data);

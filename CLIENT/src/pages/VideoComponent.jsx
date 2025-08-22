@@ -21,7 +21,7 @@ const VideoComponent = () => {
             if (!token) {
                 navigate("/signup");
             }
-            const response = await axios.post("http://localhost:3000/video", {}, {withCredentials : true});
+            const response = await axios.post("https://full-stack-real-time-video-conferencing.onrender.com/video", {}, {withCredentials : true});
             const {status} = response.data;
 
             if (status) {
