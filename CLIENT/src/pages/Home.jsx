@@ -1,8 +1,14 @@
 import React from "react";
 import "../styles/Home.css";
 import { Users, ShieldCheck, Calendar } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+  const navigate = useNavigate();
+
+  const handleJoin = ()=>{
+    navigate("/video");
+  }
   return (
     <div className="landing-page">
       <div className="hero-section">
@@ -13,8 +19,8 @@ const Home = () => {
           Unleash next-gen HD video meetings with blazing speed, rock-solid security, and real-time collaboration tools built for modern teams.
         </p>
         <div className="button-group">
-          <button className="btn primary">Join Now</button>
-          <button className="btn outline">Watch Demo</button>
+          <button className="btn primary" onClick={handleJoin}>Join Now</button>
+          <button className="btn outline" onClick={handleJoin}>Watch Demo</button>
         </div>
       </div>
 

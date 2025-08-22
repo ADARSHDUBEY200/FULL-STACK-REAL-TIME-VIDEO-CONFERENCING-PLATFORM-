@@ -1,6 +1,8 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react'
+import React, {useEffect, useRef, useState } from 'react'
 import "../styles/VideoComponent.css";
 import { useNavigate } from 'react-router-dom';
+import Cookies from "js-cookie"
+import axios from "axios";
 
 const VideoComponent = () => {
 
@@ -11,8 +13,26 @@ const VideoComponent = () => {
     const [username, setUsername] = useState("");
 
     useEffect(() => {
-        console.log("Lobby Video Method is Called");
-        lobbyUserMedia();
+        const verifyUser = async () => {
+            const token = Cookies.get("token");
+
+            // await new Promise(resolve => setTimeout(resolve, 5000));
+
+            if (!token) {
+                navigate("/signup");
+            }
+            const response = await axios.post("http://localhost:3000/video", {}, {withCredentials : true});
+            const {status} = response.data;
+
+            if (status) {
+                lobbyUserMedia();
+            } else {
+                navigate("/signup");
+            }
+        }
+
+        verifyUser();
+
     }, []);
 
     const lobbyUserMedia = async () => {

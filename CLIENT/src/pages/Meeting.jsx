@@ -1,17 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { Navigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { io } from 'socket.io-client';
-import { v4 as uuid4 } from "uuid"
+import { useNavigate } from 'react-router-dom';
 import "../styles/MeetingComponent.css";
-import { Badge, IconButton, Drawer } from '@mui/material';
-import VideocamIcon from '@mui/icons-material/Videocam';
+import axios from "axios"
+import Cookies from "js-cookie"
 import VideocamOffIcon from '@mui/icons-material/VideocamOff'
-import CallEndIcon from '@mui/icons-material/CallEnd'
-import MicIcon from '@mui/icons-material/Mic'
-import MicOffIcon from '@mui/icons-material/MicOff'
-import ScreenShareIcon from '@mui/icons-material/ScreenShare';
-import StopScreenShareIcon from '@mui/icons-material/StopScreenShare'
-import ChatIcon from '@mui/icons-material/Chat'
+
 
 var Peerconnections = {};
 
@@ -27,6 +22,7 @@ const Meeting = () => {
 
     const { id: roomId } = useParams();
     console.log("The room Id is : " + roomId);
+    const navigate = useNavigate();
 
     const localVideoRef = useRef(null);
     const socketRef = useRef();
@@ -37,31 +33,51 @@ const Meeting = () => {
     let [screen, setScreen] = useState(false);
     const [chatText, setChatText] = useState("");
     let [mychat, setMyChat] = useState([]);
-    // let [receivedChat , setReceivedChat] = useState([]);
-    // console.log("The mychat array after the rerendering : ");
-    // console.log(mychat);
+    let [participants, setParticipants] = useState([]);
+    const [aiChatWindow, setAiChatWindow] = useState(false);
+    const [aichatText, setAiChatText] = useState("");
+    const [aichats, setAichats] = useState([]);
 
 
-
-    // =================== Process of the signalling ====================================================
+// =================== Process of the signalling ====================================================
     useEffect(() => {
-        getMediaOfUser().then(() => {
-            socketRef.current = io.connect("http://localhost:3000"); // when new socket is connected
 
-            socketIdRef.current = socketRef.current.id
+        const verifyUser = async () => {
+            const token = Cookies.get("token");
 
-            socketRef.current.on("connect", () => {
-                socketRef.current.emit("join-room", roomId);
-            });
+            if (!token) {
+                navigate("/signup");
+            }
+            const response = await axios.post("http://localhost:3000/video", {}, {withCredentials : true});
+            const {status} = response.data;
 
-            socketRef.current.on("user-joined", handleNewUser);
-            socketRef.current.on("offer", handleReceiveOffer);
-            socketRef.current.on("answer", handleReceiveAnswer);
-            socketRef.current.on("IceCandidate", handleIceCandidate);
-            socketRef.current.on("chat-message", handleChats);
+            if (status) {
+                getMediaOfUser().then(() => {
+                    socketRef.current = io.connect("http://localhost:3000"); // when new socket is connected
 
+                    socketIdRef.current = socketRef.current.id
 
-        });
+                    socketRef.current.on("connect", () => {
+                        socketRef.current.emit("join-room", roomId);
+                    });
+
+                    socketRef.current.on("user-joined", handleNewUser);
+                    socketRef.current.on("offer", handleReceiveOffer);
+                    socketRef.current.on("answer", handleReceiveAnswer);
+                    socketRef.current.on("IceCandidate", handleIceCandidate);
+                    socketRef.current.on("call-ended", handleRemoteUserEndCall)
+                    socketRef.current.on("chat-message", handleChats);
+                    socketRef.current.on("existing-message", handleExistingMessage);
+                    socketRef.current.on("participants", handleParticipants);
+
+                });
+            } else {
+                navigate("/signup");
+            }
+        }
+
+        verifyUser();
+
     }, []);
 
     const getMediaOfUser = async () => {
@@ -77,6 +93,7 @@ const Meeting = () => {
         console.log("HandleUser function is called")
         const peer = new RTCPeerConnection(peerConfigConnections); // make the peer connection
         Peerconnections[userId] = peer;
+        console.log(Peerconnections);
 
         peer.onicecandidate = (event) => {
             if (event.candidate) {
@@ -90,6 +107,21 @@ const Meeting = () => {
                 if (exists) return prevVideos;
                 return [...prevVideos, { Id: userId, stream: event.streams[0] }]
             })
+
+            // event.streams[0].getTracks().forEach((track) => track.onended = () => {
+            //     console.log("Remote track ended");
+            //     socketRef.current.emit("end-call", { roomId, from: socketRef.current.id });
+            //     setVideos((prevVideos) =>
+            //         prevVideos.filter((video) => video.Id !== userId)
+            //     );
+
+            //     if (Peerconnections[userId]) {
+            //         Peerconnections[userId].close();
+            //         delete Peerconnections[userId];
+            //     }
+            // })
+
+
         }
 
         // Adding of the local Tracks 
@@ -104,6 +136,7 @@ const Meeting = () => {
             to: userId,
             offer,
         });
+
     }
 
     const handleReceiveOffer = async (data) => {
@@ -154,12 +187,11 @@ const Meeting = () => {
             await peer.addIceCandidate(new RTCIceCandidate(candidate));
         }
     }
-    // ==================================================================================================
+// ==================================================================================================
 
-    // ===================================Toggle of the Meadia ==========================================
+// ===================================Toggle of the Meadia ==========================================
 
     const handleVideo = () => {
-        setVideo(!video);
         const videoTrack = window.locaStream.getVideoTracks()[0];
         console.dir(videoTrack);
         if (videoTrack) {
@@ -169,7 +201,6 @@ const Meeting = () => {
     }
 
     const handleAudio = async () => {
-        setAudio(!audio);
         const audioTrack = window.locaStream.getAudioTracks()[0];
         console.dir(audioTrack);
         if (audioTrack) {
@@ -177,7 +208,8 @@ const Meeting = () => {
             setAudio(audioTrack.enabled);
         }
     }
-    // ==================================================================================================
+// ==================================================================================================
+    
     const handleScreen = async () => {
         if (!screen) {
             try {
@@ -192,7 +224,7 @@ const Meeting = () => {
                     }
                 });
 
-                // Show screen stream in local video (optional)
+                // Show screen stream in local video
                 if (localVideoRef.current) {
                     localVideoRef.current.srcObject = screenStream;
                 }
@@ -231,54 +263,115 @@ const Meeting = () => {
 
         setScreen(false); // update screen sharing state
     }
-    // ==================================================================================================
+
+// ==================================================================================================
+    
     const handleEndCall = async () => {
-        console.log("handle endcall");
+        //Sending message to the other users for the endcall
+        socketRef.current.emit("end-call", { roomId, from: socketRef.current.id });
+
+        // Close all peer connections
+        Object.values(Peerconnections).forEach(peer => {
+            peer.close();
+        });
+
+        // Clear peer connections
+        for (let id in Peerconnections) {
+            delete Peerconnections[id];
+        }
+
+        // Stop all local media tracks
+        if (window.locaStream) {
+            window.locaStream.getTracks().forEach((track) => track.stop());
+        }
+
+        // Optional: Clear video streams from UI
+        setVideos([]);
+        if (localVideoRef.current) {
+            localVideoRef.current.srcObject = null;
+        }
+
+        // Disconnect socket
+        socketRef.current.disconnect();
+
+        // Now we navigate the user again on the home page 
+        navigate("/")
+
+    }
+
+    const handleRemoteUserEndCall = (data) => {
+        const { from } = data;
+        console.log(`User ${from} has ended the call`);
+        console.log("handleRemoteUserEndCall is called");
+
+        // Close peer connection with that user
+        if (Peerconnections[from]) {
+            Peerconnections[from].close();
+            delete Peerconnections[from];
+        }
+
+        // Remove that user's video stream
+        setVideos((prevVideos) =>
+            prevVideos.filter((video) => video.Id !== from)
+        );
     }
 
 
-    // ==================================================================================================
+// ==================================================================================================
 
-    // ============================== Handle the chat message ===========================================
+// ============================== Handle the chat message ===========================================
+    
     const handleChatMessage = (event) => {
         setMyChat((prev) => {
             return [...prev, chatText]
         })
         socketRef.current.emit("chat-message", { chatText, roomId });
-    }
+    };
+
     const handleChats = (chatText) => {
         setMyChat((prev) => {
             return [...prev, chatText]
         })
         console.log(messages[roomId]);
+    };
+
+    const handleExistingMessage = (data) => {
+        console.log("THE DATA IS COMING IN THIS IS ")
+        console.log(data)
+        console.log("THE HANDLE EXISTING MESSAGES IS ALSO CALLED");
+        setMyChat((prev) => {
+            return [...prev, ...data];
+        })
+    };
+
+// ==================================================================================================
+
+    const handleParticipants = (data) => {
+        console.log("THE PARTICIPANTS IS CALLED");
+        console.log(data);
+        setParticipants((prev) => {
+            return [...prev, ...data];
+        })
     }
-    // ==================================================================================================
+
+    const handleAiChatWindow = () => {
+
+        setAiChatWindow(!aiChatWindow);
+    }
+
+    const handleAiChat = async () => {
+        const prompt = aichatText;
+        const response = await axios.post("http://localhost:3000/api/ai", { prompt });
+
+        console.log("The response of the ai is : ");
+        console.log(response.data);
+
+        setAichats((prevChats) => {
+            return [...prevChats, prompt, response.data];
+        })
+    }
     return (
-        // <div className="meetVideoContainer">
 
-        // <div className="buttonContainers">
-        //     <IconButton onClick={handleVideo} style={{ color: "white" }}>
-        //         {(video === true) ? <VideocamIcon /> : <VideocamOffIcon />}
-        //     </IconButton>
-        //     <IconButton onClick={handleEndCall} style={{ color: "red" }}>
-        //         <CallEndIcon />
-        //     </IconButton>
-        //     <IconButton onClick={handleAudio} style={{ color: "white" }}>
-        //         {audio === true ? <MicIcon /> : <MicOffIcon />}
-        //     </IconButton>
-
-
-        //     <IconButton onClick={handleScreen} style={{ color: "white" }}>
-        //         {screen === true ? <ScreenShareIcon /> : <StopScreenShareIcon />}
-        //     </IconButton> : <></>
-
-        //     <Badge badgeContent={3} max={999} color='orange'>
-        //         <IconButton onClick={handleChatWindow} style={{ color: "white" }}>
-        //             <ChatIcon />
-        //         </IconButton>
-        //     </Badge>
-
-        // </div> 
         <div className='Meeting-main-container'>
 
             <div className="Meeting-container">
@@ -320,7 +413,40 @@ const Meeting = () => {
                             {video ? <><i className="fa-duotone fa-solid fa-camera"></i></> : <><VideocamOffIcon sx={{ fontSize: 15 }} /></>}
                         </button>
                         <button onClick={handleScreen}>🖥️</button>
-                        <button style={{ background: 'linear-gradient(45deg, #ff4e50, #f9d423)' }}><i className="fa-solid fa-phone"></i></button>
+                        <button onClick={handleEndCall} style={{ background: 'linear-gradient(45deg, #ff4e50, #f9d423)' }}><i className="fa-solid fa-phone"></i></button>
+
+                        <div className='profile' >
+                            <div className='content'>
+                                <button onClick={handleAiChatWindow}><i class="fa-solid fa-wand-magic-sparkles"></i></button>
+                            </div>
+                            {aiChatWindow == true ? <>
+                                <div class="dropdown-content">
+
+                                    <h3>Chat</h3>
+                                    {aichats.length === 0 ? (
+                                        <p style={{ padding: "2rem 0 2rem", textAlign: "center" }}>No chat messages</p>
+                                    ) : (
+                                        <>
+                                            <div className='whole-message'>
+                                                {aichats.map((chat, index) => (
+                                                    <div className='chat-message' key={index}><p>{chat}</p></div>
+                                                ))}
+                                            </div>
+                                        </>
+                                    )}
+
+
+                                    <div className='aichatBox'>
+                                        <input type="text" placeholder="Write you chat" value={aichatText} onChange={(e) => {
+                                            setAiChatText(e.target.value);
+                                            console.log("The value of the chat is ", e.target.value);
+                                        }} />
+                                        <button onClick={handleAiChat}><i className="fa-solid fa-paper-plane"></i></button>
+                                    </div>
+
+                                </div>
+                            </> : <></>}
+                        </div>
                     </div>
 
                 </div>
@@ -330,14 +456,10 @@ const Meeting = () => {
                     <div className="card">
                         <h3>Participants</h3>
                         <div className="participants-list">
-                            <div className="participant"><img src="https://i.pravatar.cc/30?img=1" />Me</div>
-                            <div className="participant"><img src="https://i.pravatar.cc/30?img=2" />Catherine</div>
-                            <div className="participant"><img src="https://i.pravatar.cc/30?img=3" />Park Cho</div>
-                            <div className="participant"><img src="https://i.pravatar.cc/30?img=4" />John</div>
-                            <div className="participant"><img src="https://i.pravatar.cc/30?img=5" />Mary</div>
-                            <div className="participant"><img src="https://i.pravatar.cc/30?img=6" />Ali</div>
-                            <div className="participant"><img src="https://i.pravatar.cc/30?img=7" />Sara</div>
-                            <div className="participant"><img src="https://i.pravatar.cc/30?img=8" />Daniel</div>
+
+                            {participants.map((participant) => {
+                                return <div className="participant"><img src="https://i.pravatar.cc/30?img=1" />{participant}</div>
+                            })}
                         </div>
                     </div>
 
@@ -371,10 +493,6 @@ const Meeting = () => {
 
         </div>
 
-
-
-
     )
 }
-
 export default Meeting
