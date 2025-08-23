@@ -27,7 +27,7 @@ const VideoComponent = () => {
             if (status) {
                 lobbyUserMedia();
             } else {
-                navigate("/signup");
+                navigate("https://full-stack-real-time-video-conferencing-5r1k.onrender.com/signup");
             }
         }
 

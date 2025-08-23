@@ -46,7 +46,7 @@ const Meeting = () => {
             const token = Cookies.get("token");
 
             if (!token) {
-                navigate("/signup");
+                navigate("https://full-stack-real-time-video-conferencing-5r1k.onrender.com/signup");
             }
             const response = await axios.post("https://full-stack-real-time-video-conferencing.onrender.com/video", {}, {withCredentials : true});
             const {status} = response.data;
@@ -72,7 +72,7 @@ const Meeting = () => {
 
                 });
             } else {
-                navigate("/signup");
+                navigate("https://full-stack-real-time-video-conferencing-5r1k.onrender.com/signup");
             }
         }
 
@@ -295,7 +295,7 @@ const Meeting = () => {
         socketRef.current.disconnect();
 
         // Now we navigate the user again on the home page 
-        navigate("/")
+        navigate("https://full-stack-real-time-video-conferencing-5r1k.onrender.com/")
 
     }
 
