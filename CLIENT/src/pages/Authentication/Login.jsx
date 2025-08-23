@@ -28,7 +28,7 @@ const Login = ({ func }) => {
         console.log(message);
 
         if (success) {
-            navigate("https://full-stack-real-time-video-conferencing-5r1k.onrender.com/video");
+            navigate("/video");
         }
     }
 
