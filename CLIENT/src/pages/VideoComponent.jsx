@@ -6,6 +6,8 @@ import axios from "axios";
 
 const VideoComponent = () => {
 
+    console.log("We are IN the video component");
+
     const navigate = useNavigate();
 
     const localVideoRef = useRef(null);

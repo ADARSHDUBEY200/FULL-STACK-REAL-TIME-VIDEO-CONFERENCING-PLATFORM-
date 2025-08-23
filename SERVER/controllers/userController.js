@@ -89,7 +89,7 @@ const Login = async (req, res, next) => {
             sameSite: "none",
         });
 
-        res.status(201).json({ message: "User logged in successfully", success: true });
+        return res.status(201).json({ message: "User logged in successfully", success: true });
 
     } catch (error) {
 

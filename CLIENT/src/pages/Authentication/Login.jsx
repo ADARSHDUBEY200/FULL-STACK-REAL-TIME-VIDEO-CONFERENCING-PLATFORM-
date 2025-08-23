@@ -26,8 +26,10 @@ const Login = ({ func }) => {
         const { message, success } = response.data;
 
         console.log(message);
+        console.log(success);
 
         if (success) {
+            console.log("This is navigation called for video");
             navigate("/video");
         }
     }
