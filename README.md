@@ -80,69 +80,58 @@ The platform follows a **client-server model** with **MVC architecture** on the 
 
 ---
 
-Tech Stack & AI Tools
-🎨 Frontend Technologies
+# 🛠 Tech Stack & AI Tools
 
-React 18 – Modern JavaScript library with hooks
+## 🎨 Frontend Technologies
+- **React 18** – Modern JavaScript library with hooks  
+- **React Router v6** – Client-side routing for seamless navigation  
+- **Axios** – HTTP client for API communication  
+- **JWT Authentication** – Secure login/register system integration  
+- **CSS3** – Modern styling with Flexbox/Grid & fully responsive design  
 
-React Router v6 – Client-side routing for seamless navigation
+## ⚙️ Backend Technologies
+- **Node.js 18+** – JavaScript runtime environment  
+- **Express.js** – Fast, unopinionated web framework  
+- **MongoDB** – NoSQL document database for storing user data, rooms, and chat messages  
+- **Mongoose** – Elegant MongoDB object modeling for Node.js  
+- **OAuth 2.0 + JWT** – Secure authentication & authorization  
+- **MVC Architecture** – Clean, scalable backend structure  
 
-Axios – HTTP client for API communication
+## 🌐 Real-Time Communication
+- **WebRTC** – Peer-to-peer audio/video streaming  
+- **Socket.IO** – Real-time signaling & chat messaging  
+- **Mesh Topology** – Efficient peer connections for multi-user rooms  
 
-JWT Authentication – Secure login/register system integration
+## 🤖 AI Integration
+- **Google Gemini API** – Advanced AI for:  
+  - Fun chatbot interactions during meetings  
+  - Contextual & engaging responses  
+  - Natural language understanding  
 
-CSS3 – Modern styling with Flexbox/Grid & fully responsive design
+## ☁️ Cloud Services & DevOps
+- **Render** – Deployment platform for frontend & backend  
+- **Docker & Docker Compose** – Containerization & multi-service orchestration  
+- **Environment Management** – dotenv for secure environment variables  
 
-⚙️ Backend Technologies
+## 🛠 Development Tools
+- **ESLint** – Code linting & style enforcement  
+- **Nodemon** – Development server auto-restart  
+- **CORS** – Secure cross-origin communication  
+- **Git & GitHub** – Version control & collaboration  
 
-Node.js 18+ – JavaScript runtime environment
-
-Express.js – Fast, unopinionated web framework
-
-MongoDB – NoSQL document database for storing user data, rooms, and chat messages
-
-Mongoose – Elegant MongoDB object modeling for Node.js
-
-OAuth 2.0 + JWT – Secure authentication & authorization
-
-MVC Architecture – Clean, scalable backend structure
-
-🌐 Real-Time Communication
-
-WebRTC – Peer-to-peer audio/video streaming
-
-Socket.IO – Real-time signaling & chat messaging
-
-Mesh Topology – Efficient peer connections for multi-user rooms
-
-🤖 AI Integration
-
-Google Gemini API – Advanced AI for:
-
-Fun chatbot interactions during meetings
-
-Contextual & engaging responses
-
-Natural language understanding
-
-☁️ Cloud Services & DevOps
-
-Render – Deployment platform for frontend & backend
-
-Docker & Docker Compose – Containerization & multi-service orchestration
-
-Environment Management – dotenv for secure environment variables
-
-🛠 Development Tools
-
-ESLint – Code linting & style enforcement
-
-Nodemon – Development server auto-restart
-
-CORS – Secure cross-origin communication
-
-Git & GitHub – Version control & collaboration
 ---
+
+# ⚙️ Local Setup Instructions  
+
+## 🔑 Prerequisites
+- **Node.js 18+**  
+- **Docker & Docker Compose** (recommended)  
+- **MongoDB** (local installation or Atlas account)  
+- **Google Cloud Console** (for OAuth setup)  
+- **Google AI Studio account** (for Gemini API key)  
+
+---
+
 
 ## 📂 Project Structure
 
