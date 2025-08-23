@@ -35,7 +35,7 @@ const Login = ({ func }) => {
     }
 
     const changeToSignup = () => {
-        func(true);
+        navigate("/signup");
     }
     return (
         <form className="form-wrapper" onSubmit={handleLogin}>
