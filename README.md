@@ -14,46 +14,30 @@ Additionally, it integrates **Gemini API** to provide a **funny AI chatbot** alo
 
 ---
 
-✨ Features
-🎯 Core Video Conferencing Functionality
+# ✨ Features
 
-Multi-User Rooms: Create and join rooms with multiple participants using mesh topology
+## 🎯 Core Video Conferencing Functionality
+- **Multi-User Rooms** – Create and join rooms with multiple participants using mesh topology  
+- **Video & Audio Conferencing** – High-quality, real-time video and audio communication via WebRTC  
+- **Screen Sharing** – Share your screen for presentations and collaboration  
+- **Chat Messaging** – Real-time group chat powered by Socket.IO  
+- **Media Controls** – Toggle microphone and camera on/off during meetings  
 
-Video & Audio Conferencing: High-quality, real-time video and audio communication via WebRTC
+## 🤖 Advanced Features
+- **AI-Powered Chatbot** – Integrated Gemini API chatbot for fun and interactive conversations  
+- **Secure Authentication** – OAuth 2.0 & JWT-based login/register for user security  
+- **Room Management** – Unique room links and secure room joining  
+- **Real-Time Status** – Instant updates on participants joining/leaving  
+- **Multi-Device Support** – Works seamlessly across desktop and mobile  
 
-Screen Sharing: Share your screen for presentations and collaboration
+## ⚙️ Technical Features
+- **MVC Architecture** – Clean and scalable backend with Express.js & Node.js  
+- **Responsive Design** – Modern, mobile-first UI built with React.js & CSS  
+- **RESTful APIs** – Well-structured APIs for authentication and data flow  
+- **Real-Time Communication** – WebRTC for media streaming + Socket.IO for signaling  
+- **Security First** – JWT authentication, OAuth 2.0 integration, input validation, and CORS protection  
+- **Production Ready** – Docker & Docker Compose support with deployment on Render  
 
-Chat Messaging: Real-time group chat powered by Socket.IO
-
-Media Controls: Toggle microphone and camera on/off during meetings
-
-🤖 Advanced Features
-
-AI-Powered Chatbot: Integrated Gemini API chatbot for fun and interactive conversations
-
-Secure Authentication: OAuth 2.0 & JWT-based login/register for user security
-
-Room Management: Unique room links and secure room joining
-
-Real-Time Status: Instant updates on participants joining/leaving
-
-Multi-Device Support: Works seamlessly across desktop and mobile
-
-⚙️ Technical Features
-
-MVC Architecture: Clean and scalable backend with Express.js & Node.js
-
-Responsive Design: Modern, mobile-first UI built with React.js & CSS
-
-RESTful APIs: Well-structured APIs for authentication and data flow
-
-Real-Time Communication: WebRTC for media streaming + Socket.IO for signaling
-
-Security First: JWT authentication, OAuth 2.0 integration, input validation, and CORS protection
-
-Production Ready: Docker & Docker Compose support with deployment on Render
-
----
 
 ## 🏗 Architecture
 
