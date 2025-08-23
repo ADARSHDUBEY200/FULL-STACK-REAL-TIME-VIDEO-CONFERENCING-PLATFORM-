@@ -1,6 +1,6 @@
 const express = require("express");
-const {createServer} = require("node:http");
-const {connectToSocket} = require("./controllers/socketManger.js");
+const { createServer } = require("node:http");
+const { connectToSocket } = require("./controllers/socketManger.js");
 const aiRoutes = require("./routes/aiRoutes.js")
 const userRoutes = require("./routes/userRoutes.js")
 const cors = require("cors");
@@ -15,7 +15,7 @@ const server = createServer(app);
 
 const io = connectToSocket(server);
 
-app.set("port",process.env.PORT || 3000);
+app.set("port", process.env.PORT || 3000);
 
 app.use(cors({
   origin: ["https://full-stack-real-time-video-conferencing-5r1k.onrender.com"],
@@ -23,34 +23,31 @@ app.use(cors({
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true,
 }));
-app.options("*", cors({
-  origin: "https://full-stack-real-time-video-conferencing-5r1k.onrender.com",
-  credentials: true,
-}));
 
-app.use(express.json({limit:"40kb"}));
-app.use(express.urlencoded({limit:"40kb",extended:true}));
+
+app.use(express.json({ limit: "40kb" }));
+app.use(express.urlencoded({ limit: "40kb", extended: true }));
 app.use(cookieParser());
 
 app.use("/api", aiRoutes);
-app.use("/",userRoutes);
+app.use("/", userRoutes);
 
 const url = process.env.MONGO_URL;
 
-app.get("/Delete", async (req, res)=>{
+app.get("/Delete", async (req, res) => {
   const response = await User.deleteMany({});
   console.log(response);
   return res.json("Deleted");
 })
 
-const start = async ()=>{
-    server.listen(app.get("port"),(req,res)=>{
-        console.log("NOW THE SERVER IS LISTENING ");
-               
-    });
+const start = async () => {
+  server.listen(app.get("port"), (req, res) => {
+    console.log("NOW THE SERVER IS LISTENING ");
 
-    await mongoose.connect(url);
-    console.log("✅ Connected to MongoDB");
+  });
+
+  await mongoose.connect(url);
+  console.log("✅ Connected to MongoDB");
 };
 start();
 

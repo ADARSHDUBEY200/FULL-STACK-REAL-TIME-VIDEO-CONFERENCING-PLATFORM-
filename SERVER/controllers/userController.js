@@ -35,7 +35,7 @@ const Signup = async (req, res, next) => {
 
         res.cookie("token", token, {
             withCredentials: true,
-            httpOnly: false,
+            httpOnly: true,
             secure: true,           // required for HTTPS (Render is HTTPS)
             sameSite: "none",
         })
@@ -84,7 +84,7 @@ const Login = async (req, res, next) => {
 
         res.cookie("token", token, {
             withCredentials: true,
-            httpOnly: false,
+            httpOnly: true,
             secure: true,           // required for HTTPS (Render is HTTPS)
             sameSite: "none",
         });
