@@ -40,7 +40,7 @@ const Signup = async (req, res, next) => {
             sameSite: "none",
         })
 
-        return res.status(201).json({ message: "USER SIGNED IN SUCCESSFULLY ", success: true, user });
+        return res.status(201).json({ message: "USER SIGNED IN SUCCESSFULLY ", success: true, user , token});
 
     } catch (error) {
 
@@ -89,7 +89,7 @@ const Login = async (req, res, next) => {
             sameSite: "none",
         });
 
-        return res.status(201).json({ message: "User logged in successfully", success: true });
+        return res.status(201).json({ message: "User logged in successfully", success: true , token});
 
     } catch (error) {
 

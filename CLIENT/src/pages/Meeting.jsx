@@ -46,7 +46,7 @@ const Meeting = () => {
             const token = Cookies.get("token");
 
             if (!token) {
-                navigate("/signup");
+                navigate("/login");
             }
             const response = await axios.post("https://full-stack-real-time-video-conferencing.onrender.com/video", {}, {withCredentials : true});
             const {status} = response.data;

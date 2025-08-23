@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from "react-router-dom"
 import axios from "axios";
+import Cookies from "js-cookie";
 import "../../styles/Authentication/Signup.css"
 
 const Signup = () => {
@@ -32,6 +33,7 @@ const Signup = () => {
         console.log(user)
 
         if (success) {
+            Cookies.set("token", response.data.token, { sameSite: "None", secure: true });
             navigate("/video");
         }
     }

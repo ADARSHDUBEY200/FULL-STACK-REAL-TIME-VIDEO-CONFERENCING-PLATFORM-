@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from "react-router-dom"
 import "../../styles/Authentication/Login.css"
 import axios from "axios";
+import Cookies from "js-cookie";
 const Login = () => {
 
     const navigate = useNavigate();
@@ -30,6 +31,7 @@ const Login = () => {
 
         if (success) {
             console.log("This is navigation called for video");
+            Cookies.set("token", response.data.token, { sameSite: "None", secure: true });
             navigate("/video");
         }
     };
