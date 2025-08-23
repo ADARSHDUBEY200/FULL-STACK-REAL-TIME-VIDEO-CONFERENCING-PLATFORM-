@@ -7,7 +7,7 @@ const Home = () => {
   const navigate = useNavigate();
 
   const handleJoin = ()=>{
-    navigate("https://full-stack-real-time-video-conferencing-5r1k.onrender.com/video");
+    navigate("/video");
   }
   return (
     <div className="landing-page">
