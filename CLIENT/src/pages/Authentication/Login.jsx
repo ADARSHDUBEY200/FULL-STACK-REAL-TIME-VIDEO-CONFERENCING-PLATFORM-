@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from "react-router-dom"
 import "../../styles/Authentication/Login.css"
 import axios from "axios";
-const Login = ({ func }) => {
+const Login = () => {
 
     const navigate = useNavigate();
 
@@ -21,7 +21,7 @@ const Login = ({ func }) => {
 
     const handleLogin = async (event) => {
         event.preventDefault();
-        const response = await axios.post("https://full-stack-real-time-video-conferencing.onrender.com/login", { ...formData }, {withCredentials : true});
+        const response = await axios.post("https://full-stack-real-time-video-conferencing.onrender.com/login", { ...formData }, { withCredentials: true });
 
         const { message, success } = response.data;
 
@@ -32,25 +32,24 @@ const Login = ({ func }) => {
             console.log("This is navigation called for video");
             navigate("/video");
         }
-    }
+    };
 
-    const changeToSignup = () => {
-        navigate("/signup");
-    }
     return (
-        <form className="form-wrapper" onSubmit={handleLogin}>
-            <h2>LogIn</h2>
-            <div className="form-group">
-                <label htmlFor="email">Your Email</label>
-                <input type="email" id="email" placeholder="adarsh@email.com" required name="email" value={formData.email} onChange={handleformData} />
-            </div>
-            <div className="form-group">
-                <label htmlFor="password">Your Password</label>
-                <input type="password" id="password"  required name="password" value={formData.password} onChange={handleformData} />
-            </div>
-            <button type="submit" >LogIn</button>
-            <Link onClick={changeToSignup}>Want to Signup</Link>
-        </form>
+        <div className='Authentication'>
+            <form className="form-wrapper" onSubmit={handleLogin}>
+                <h2>LogIn</h2>
+                <div className="form-group">
+                    <label htmlFor="email">Your Email</label>
+                    <input type="email" id="email" placeholder="adarsh@email.com" required name="email" value={formData.email} onChange={handleformData} />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="password">Your Password</label>
+                    <input type="password" id="password" required name="password" value={formData.password} onChange={handleformData} />
+                </div>
+                <button type="submit" >LogIn</button>
+                <Link to={"/signup"}>Want to Signup</Link>
+            </form>
+        </div>
     )
 }
 
