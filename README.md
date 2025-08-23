@@ -1,14 +1,6 @@
-🔥 Perfect! Thanks for sharing all the details. Based on everything, I’ll now create a **professional, eye-catching, and recruiter-ready `README.md`** for your project **TalkSphere**. This will make your repo stand out on GitHub and during interviews.
-
-Here’s your polished README:
-
----
-
 # 📹 TalkSphere – Full Stack Real-Time Video Conferencing Platform
 
 [![Website](https://img.shields.io/badge/Live-Demo-blue?style=for-the-badge\&logo=vercel)](https://full-stack-real-time-video-conferencing-5r1k.onrender.com)
-[![License](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)](#license)
-[![Tech](https://img.shields.io/badge/Built%20With-React%20%7C%20Node.js%20%7C%20WebRTC%20%7C%20Socket.IO-orange?style=for-the-badge)]()
 
 ---
 
@@ -22,17 +14,44 @@ Additionally, it integrates **Gemini API** to provide a **funny AI chatbot** alo
 
 ---
 
-## ✨ Features
+✨ Features
+🎯 Core Video Conferencing Functionality
 
-* 🎥 **Real-time Video Conferencing** (multi-user rooms)
-* 🗨️ **Real-time Chatting** with Socket.IO
-* 📺 **Screen Sharing** for better collaboration
-* 🎙️ **Toggle Media** (camera & microphone control)
-* 🤖 **AI Chatbot powered by Gemini API** for fun interactions
-* 🔑 **Secure Authentication** with **OAuth 2.0** & **JWT**
-* 🏗 **MVC Architecture** for clean and scalable backend
-* 🐳 **Docker & Docker Compose support** for easy setup
-* 🌐 **Deployed on Render** for global availability
+Multi-User Rooms: Create and join rooms with multiple participants using mesh topology
+
+Video & Audio Conferencing: High-quality, real-time video and audio communication via WebRTC
+
+Screen Sharing: Share your screen for presentations and collaboration
+
+Chat Messaging: Real-time group chat powered by Socket.IO
+
+Media Controls: Toggle microphone and camera on/off during meetings
+
+🤖 Advanced Features
+
+AI-Powered Chatbot: Integrated Gemini API chatbot for fun and interactive conversations
+
+Secure Authentication: OAuth 2.0 & JWT-based login/register for user security
+
+Room Management: Unique room links and secure room joining
+
+Real-Time Status: Instant updates on participants joining/leaving
+
+Multi-Device Support: Works seamlessly across desktop and mobile
+
+⚙️ Technical Features
+
+MVC Architecture: Clean and scalable backend with Express.js & Node.js
+
+Responsive Design: Modern, mobile-first UI built with React.js & CSS
+
+RESTful APIs: Well-structured APIs for authentication and data flow
+
+Real-Time Communication: WebRTC for media streaming + Socket.IO for signaling
+
+Security First: JWT authentication, OAuth 2.0 integration, input validation, and CORS protection
+
+Production Ready: Docker & Docker Compose support with deployment on Render
 
 ---
 
@@ -77,32 +96,68 @@ The platform follows a **client-server model** with **MVC architecture** on the 
 
 ---
 
-## 🛠 Tech Stack
+Tech Stack & AI Tools
+🎨 Frontend Technologies
 
-**Frontend:**
+React 18 – Modern JavaScript library with hooks
 
-* ⚛️ React.js, React Router, Axios, CSS
+React Router v6 – Client-side routing for seamless navigation
 
-**Backend:**
+Axios – HTTP client for API communication
 
-* 🟢 Node.js, Express.js
-* 🔑 OAuth 2.0, JWT
-* 🏗 MVC Pattern
+JWT Authentication – Secure login/register system integration
 
-**Real-Time Communication:**
+CSS3 – Modern styling with Flexbox/Grid & fully responsive design
 
-* 🌐 WebRTC (peer-to-peer media streaming)
-* 🔌 Socket.IO (signaling & chat)
+⚙️ Backend Technologies
 
-**AI Integration:**
+Node.js 18+ – JavaScript runtime environment
 
-* 🤖 Gemini API (fun chatbot assistant)
+Express.js – Fast, unopinionated web framework
 
-**Deployment & DevOps:**
+MongoDB – NoSQL document database for storing user data, rooms, and chat messages
 
-* 🐳 Docker, Docker Compose
-* 🚀 Render (deployment)
+Mongoose – Elegant MongoDB object modeling for Node.js
 
+OAuth 2.0 + JWT – Secure authentication & authorization
+
+MVC Architecture – Clean, scalable backend structure
+
+🌐 Real-Time Communication
+
+WebRTC – Peer-to-peer audio/video streaming
+
+Socket.IO – Real-time signaling & chat messaging
+
+Mesh Topology – Efficient peer connections for multi-user rooms
+
+🤖 AI Integration
+
+Google Gemini API – Advanced AI for:
+
+Fun chatbot interactions during meetings
+
+Contextual & engaging responses
+
+Natural language understanding
+
+☁️ Cloud Services & DevOps
+
+Render – Deployment platform for frontend & backend
+
+Docker & Docker Compose – Containerization & multi-service orchestration
+
+Environment Management – dotenv for secure environment variables
+
+🛠 Development Tools
+
+ESLint – Code linting & style enforcement
+
+Nodemon – Development server auto-restart
+
+CORS – Secure cross-origin communication
+
+Git & GitHub – Version control & collaboration
 ---
 
 ## 📂 Project Structure
@@ -129,62 +184,48 @@ TalkSphere/
 
 ---
 
-## ⚙️ Installation & Setup
+## ⚙️ Local Setup Instructions  
 
-### 🔹 Option 1: Run Locally (Manual Setup)
+### 🔑 Prerequisites  
+- **Node.js 18+**  
+- **Docker & Docker Compose** (recommended)  
+- **MongoDB** (local installation or Atlas account)  
+- **Google Cloud Console** (for OAuth setup)  
+- **Google AI Studio account** (for Gemini API key)  
 
+---
+
+### 🐳 Option 1: Docker Development (Recommended)  
+
+#### 1️⃣ Clone the repository  
 ```bash
-# Clone the repo
-git clone https://github.com/your-username/TalkSphere.git
-cd TalkSphere
+git clone <your-repo-url>
+cd talksphere
 
-# Setup backend
-cd server
-npm install
+2️⃣ Set up environment variables
 
-# Setup frontend
-cd ../client
-npm install
-```
-
-🔑 **Environment Variables** (create a `.env` file in `server/`):
-
-```env
+Create .env file in server/:
+NODE_ENV=development
 PORT=5000
-JWT_SECRET=your_jwt_secret
-OAUTH_CLIENT_ID=your_oauth_client_id
-OAUTH_CLIENT_SECRET=your_oauth_client_secret
+MONGODB_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret_32_characters_minimum
+OAUTH_CLIENT_ID=your_google_oauth_client_id
+OAUTH_CLIENT_SECRET=your_google_oauth_client_secret
 GEMINI_API_KEY=your_gemini_api_key
-```
 
-```bash
-# Start backend
-cd server
-npm run dev
+Create .env file in client/:
+REACT_APP_API_URL=http://localhost:5000/api
 
-# Start frontend
-cd ../client
-npm start
-```
 
-App runs on 👉 `http://localhost:3000`
-
----
-
-### 🔹 Option 2: Run with Docker & Docker Compose
-
-```bash
-# Clone the repo
-git clone https://github.com/your-username/TalkSphere.git
-cd TalkSphere
-
-# Run with docker-compose
+3️⃣ Run with Docker
+# Update docker-compose.yml with your environment variables
 docker-compose up --build
-```
 
-App will be available at 👉 `http://localhost:3000`
+4️⃣ Access the application
 
----
+Frontend: http://localhost:3000
+
+Backend API: http://localhost:5000
 
 ## 🤝 Contributing
 
