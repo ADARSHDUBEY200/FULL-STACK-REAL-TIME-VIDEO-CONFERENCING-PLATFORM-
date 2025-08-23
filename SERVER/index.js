@@ -20,8 +20,14 @@ app.set("port",process.env.PORT || 3000);
 app.use(cors({
   origin: ["https://full-stack-real-time-video-conferencing-5r1k.onrender.com"],
   methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true,
 }));
+app.options("*", cors({
+  origin: "https://full-stack-real-time-video-conferencing-5r1k.onrender.com",
+  credentials: true,
+}));
+
 app.use(express.json({limit:"40kb"}));
 app.use(express.urlencoded({limit:"40kb",extended:true}));
 app.use(cookieParser());
