@@ -26,7 +26,7 @@ const Home = () => {
 
       <div className="image-section">
         <img
-          src="/public/image.jpg"
+          src="/image.jpg"
           alt="Video conferencing demo"
           className="conference-image"
         />
