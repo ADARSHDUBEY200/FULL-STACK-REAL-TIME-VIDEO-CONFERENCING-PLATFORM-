@@ -14,11 +14,12 @@ const userVerification = (req, res) => {
     jwt.verify(token, process.env.TOKEN_KEY, async (err, data) => {
 
         if (err) {
-            return res.json({ status: false })
+            return res.json({ status: false });
         } else {
             const user = await User.findById(data.id);
             if (user) {
-                return res.json({ status: true, user: user.username })
+                console.log("The user is "+user);
+                return res.json({ status: true, user: user.name })
             }
             else {
                 return res.json({ status: false })

@@ -39,26 +39,22 @@ const Meeting = () => {
     const [aichats, setAichats] = useState([]);
 
 
-// =================== Process of the signalling ====================================================
+    // =================== Process of the signalling ====================================================
     useEffect(() => {
 
         const verifyUser = async () => {
-            const token = Cookies.get("token");
-
-            if (!token) {
-                navigate("/login");
-            }
-            const response = await axios.post("https://full-stack-real-time-video-conferencing.onrender.com/video", {}, {withCredentials : true});
-            const {status} = response.data;
+            const response = await axios.post(`${import.meta.env.VITE_API_URL}/video`, {}, { withCredentials: true });
+            const { status, user } = response.data;
+            console.log(user);
 
             if (status) {
                 getMediaOfUser().then(() => {
-                    socketRef.current = io.connect("https://full-stack-real-time-video-conferencing.onrender.com"); // when new socket is connected
+                    socketRef.current = io.connect(`${import.meta.env.VITE_API_URL}`); // when new socket is connected
 
                     socketIdRef.current = socketRef.current.id
 
                     socketRef.current.on("connect", () => {
-                        socketRef.current.emit("join-room", roomId);
+                        socketRef.current.emit("join-room", { roomId, user });
                     });
 
                     socketRef.current.on("user-joined", handleNewUser);
@@ -72,7 +68,7 @@ const Meeting = () => {
 
                 });
             } else {
-                navigate("/signup");
+                navigate("/login");
             }
         }
 
@@ -187,9 +183,9 @@ const Meeting = () => {
             await peer.addIceCandidate(new RTCIceCandidate(candidate));
         }
     }
-// ==================================================================================================
+    // ==================================================================================================
 
-// ===================================Toggle of the Meadia ==========================================
+    // ===================================Toggle of the Meadia ==========================================
 
     const handleVideo = () => {
         const videoTrack = window.locaStream.getVideoTracks()[0];
@@ -208,8 +204,8 @@ const Meeting = () => {
             setAudio(audioTrack.enabled);
         }
     }
-// ==================================================================================================
-    
+    // ==================================================================================================
+
     const handleScreen = async () => {
         if (!screen) {
             try {
@@ -264,8 +260,8 @@ const Meeting = () => {
         setScreen(false); // update screen sharing state
     }
 
-// ==================================================================================================
-    
+    // ==================================================================================================
+
     const handleEndCall = async () => {
         //Sending message to the other users for the endcall
         socketRef.current.emit("end-call", { roomId, from: socketRef.current.id });
@@ -317,10 +313,10 @@ const Meeting = () => {
     }
 
 
-// ==================================================================================================
+    // ==================================================================================================
 
-// ============================== Handle the chat message ===========================================
-    
+    // ============================== Handle the chat message ===========================================
+
     const handleChatMessage = (event) => {
         setMyChat((prev) => {
             return [...prev, chatText]
@@ -344,14 +340,13 @@ const Meeting = () => {
         })
     };
 
-// ==================================================================================================
+    // ==================================================================================================
 
     const handleParticipants = (data) => {
         console.log("THE PARTICIPANTS IS CALLED");
         console.log(data);
-        setParticipants((prev) => {
-            return [...prev, ...data];
-        })
+        const arr = data.map(participant =>Object.values(participant)[0]);
+        setParticipants(arr);
     }
 
     const handleAiChatWindow = () => {
@@ -361,7 +356,7 @@ const Meeting = () => {
 
     const handleAiChat = async () => {
         const prompt = aichatText;
-        const response = await axios.post("https://full-stack-real-time-video-conferencing.onrender.com/api/ai", { prompt });
+        const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/ai`, { prompt });
 
         console.log("The response of the ai is : ");
         console.log(response.data);

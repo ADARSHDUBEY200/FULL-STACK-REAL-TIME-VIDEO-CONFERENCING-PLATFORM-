@@ -25,7 +25,7 @@ const Signup = () => {
     const handleLogin = async (event) => {
 
         event.preventDefault();
-        const response = await axios.post("https://full-stack-real-time-video-conferencing.onrender.com/signup", { ...formData }, { withCredentials: true })
+        const response = await axios.post(`${import.meta.env.VITE_API_URL}/signup`, { ...formData }, { withCredentials: true })
         console.log(response);
         const { message, success, user } = response.data;
         console.log(message);
@@ -33,7 +33,6 @@ const Signup = () => {
         console.log(user)
 
         if (success) {
-            Cookies.set("token", response.data.token, { sameSite: "None", secure: true });
             navigate("/video");
         }
     }

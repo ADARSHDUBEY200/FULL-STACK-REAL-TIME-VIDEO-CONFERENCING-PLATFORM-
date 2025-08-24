@@ -16,20 +16,13 @@ const VideoComponent = () => {
 
     useEffect(() => {
         const verifyUser = async () => {
-            const token = Cookies.get("token");
-
-            // await new Promise(resolve => setTimeout(resolve, 5000));
-
-            if (!token) {
-                navigate("/login");
-            }
-            const response = await axios.post("https://full-stack-real-time-video-conferencing.onrender.com/video", {}, {withCredentials : true});
+            const response = await axios.post(`${import.meta.env.VITE_API_URL}/video`, {}, {withCredentials : true});
             const {status} = response.data;
 
             if (status) {
                 lobbyUserMedia();
             } else {
-                navigate("/signup");
+                navigate("/login");
             }
         }
 

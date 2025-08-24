@@ -76,19 +76,30 @@ body {
 
 .image-section {
   margin-top: 4rem;
-  width: 60vw;
-  height: 72vh;
+  width: 100%;
+  /* full width by default */
+  max-width: 1100px;
+  /* don’t let it grow too large */
+  height: auto;
+  /* let height adjust automatically */
   display: flex;
   justify-content: center;
+  padding: 0 1rem;
+  /* small padding on sides */
 }
 
 .conference-image {
-  max-width: 90%;
   width: 100%;
+  /* take full available space */
+  max-width: 900px;
+  /* limit on large screens */
+  height: 550px;
+  /* keeps aspect ratio */
   border-radius: 2rem;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
   object-fit: cover;
 }
+
 
 .features-section {
   margin-top: 6rem;
@@ -98,13 +109,21 @@ body {
   width: 100%;
   max-width: 1200px;
   padding: 0 1rem;
+
+  /* Center grid items */
+  justify-items: center;
+  align-items: center;
 }
 
 .feature-card {
   background-color: #1e1e2f;
   padding: 2rem;
   height: 40vh;
-  width: 25vw;
+
+  /* Instead of fixed width */
+  max-width: 350px;
+  width: 100%;
+
   border-radius: 1.5rem;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
   text-align: center;
@@ -130,4 +149,69 @@ body {
   color: #ccc;
   font-size: 0.95rem;
   line-height: 1.5;
+}
+
+
+@media (max-width:450px) {
+  .hero-title {
+    font-size: 2rem;
+    font-weight: 800;
+    /* margin-bottom: 2rem; */
+  }
+
+  .image-section {
+    margin-top: 2rem;
+  }
+
+  .conference-image {
+    height: 250px;
+  }
+
+  .features-section {
+    grid-template-columns: 1fr;
+  }
+
+  .feature-card {
+    max-width: 550px;
+    width: 100%;
+  }
+}
+
+@media (min-width:450px) and (max-width: 800px) {
+  .image-section {
+    margin-top: 1rem;
+  }
+
+  .conference-image {
+    height: 350px;
+  }
+
+  .features-section {
+    grid-template-columns: 1fr;
+  }
+
+  .feature-card {
+    max-width: 450px;
+    width: 100%;
+  }
+}
+
+@media (min-width:800px) and (max-width: 1100px) {
+  .image-section {
+    margin-top: 2rem;
+  }
+
+
+  .conference-image {
+    height: 450px;
+  }
+
+  .features-section {
+    grid-template-columns: 1fr;
+  }
+
+  .feature-card {
+    max-width: 550px;
+    width: 100%;
+  }
 }

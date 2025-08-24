@@ -19,23 +19,24 @@ const connectToSocket = (server) => {
 
     io.on("connection", (socket) => {
 
-        socket.on("join-room", (roomId) => {
-            console.log("New Socket in the room ", roomId, "And the Socket Id", socket.id);
+        socket.on("join-room", (data) => {
+            const { roomId, user } = data;
+            console.log(user);
             socket.join(roomId);
             connections[socket.id] = roomId;
             socket.to(roomId).emit("user-joined", socket.id); // emit this event to all the users expect itself
-           if(messages[roomId]){
-             io.to(socket.id).emit("existing-message", messages[roomId]);
-           }
+            if (messages[roomId]) {
+                io.to(socket.id).emit("existing-message", messages[roomId]);
+            }
 
-           if(!participants[roomId]){
-            participants[roomId] = [];
-           }
+            if (!participants[roomId]) {
+                participants[roomId] = [];
+            }
 
-           participants[roomId].push(socket.id);
-           console.log("the participants before the disconnections is : ");
-           console.log(participants[roomId]);
-           io.to(roomId).emit("participants",participants[roomId]); 
+            participants[roomId].push({[socket.id] : user});
+            console.log("the participants before the disconnections is : ");
+            console.log(participants[roomId]);
+            io.to(roomId).emit("participants", participants[roomId]);
         });
 
         socket.on("offer", (data) => {
@@ -49,7 +50,7 @@ const connectToSocket = (server) => {
         })
 
         socket.on("IceCandidate", (data) => {
-            const {to, candidate } = data
+            const { to, candidate } = data
             socket.to(to).emit("IceCandidate", { from: socket.id, candidate });
         });
 
@@ -62,7 +63,7 @@ const connectToSocket = (server) => {
         socket.on("chat-message", (data) => {
             const { chatText, roomId } = data;
             console.log("The message is :", chatText, roomId, socket.id);
-            if(!messages[roomId]){
+            if (!messages[roomId]) {
                 messages[roomId] = [];
             };
 
@@ -73,16 +74,16 @@ const connectToSocket = (server) => {
 
 
         socket.on("disconnect", () => {
-            console.log("The user is disconnected "+ connections[socket.id] + "The socket.id " +  socket.id);
-           participants[connections[socket.id]] = participants[connections[socket.id]].filter((participant)=>{
-               return  participant !== socket.id
+            console.log("The user is disconnected " + connections[socket.id] + "The socket.id " + socket.id);
+            participants[connections[socket.id]] = participants[connections[socket.id]].filter((participant) => {
+                return !participant[socket.id];
             });
 
             console.log("THE PARTICIPANTS AFTER THE DISCONNECTION IS" + socket.id);
             console.log(participants[connections[socket.id]]);
 
             socket.to(connections[socket.id]).emit("call-ended", { from: socket.id });
-            io.to(connections[socket.id]).emit("participants",participants[connections[socket.id]]); 
+            io.to(connections[socket.id]).emit("participants", participants[connections[socket.id]]);
         });
     })
 }

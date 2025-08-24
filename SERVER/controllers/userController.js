@@ -36,8 +36,8 @@ const Signup = async (req, res, next) => {
         res.cookie("token", token, {
             withCredentials: true,
             httpOnly: true,
-            secure: true,           // required for HTTPS (Render is HTTPS)
-            sameSite: "none",
+            secure: process.env.NODE_ENV === "production",    
+            sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
         })
 
         return res.status(201).json({ message: "USER SIGNED IN SUCCESSFULLY ", success: true, user , token});
@@ -85,8 +85,8 @@ const Login = async (req, res, next) => {
         res.cookie("token", token, {
             withCredentials: true,
             httpOnly: true,
-            secure: true,           // required for HTTPS (Render is HTTPS)
-            sameSite: "none",
+            secure: process.env.NODE_ENV === "production",           
+            sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
         });
 
         return res.status(201).json({ message: "User logged in successfully", success: true , token});

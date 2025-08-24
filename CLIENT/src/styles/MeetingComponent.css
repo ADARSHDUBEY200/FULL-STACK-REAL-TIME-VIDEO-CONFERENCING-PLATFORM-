@@ -41,6 +41,7 @@
  .main-speaker video {
      width: 100%;
      height: 100%;
+     border-radius: 16px;
      object-fit: cover;
  }
 
@@ -56,7 +57,7 @@
      width: 100%;
      height: 32vh;
      gap: 15px;
-     margin-top: 15px;
+     margin-top: 13px;
      padding: 0px 0.7rem 0px 0.7rem;
      border-radius: 16px;
      box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
@@ -93,7 +94,7 @@
  .controls {
      display: flex;
      justify-content: center;
-     margin-top: 20px;
+     margin-top: 15px;
      gap: 15px;
  }
 
@@ -127,12 +128,12 @@
      border-radius: 2rem;
  }
 
- .dropdown-content .drop-main-content {
+ /* .dropdown-content .drop-main-content {
      display: flex;
      margin-bottom: 1rem;
      align-items: center;
      justify-content: space-between;
- }
+ } */
 
  .aichatBox {
      display: flex;
@@ -190,7 +191,8 @@
      border-radius: 15px;
      padding: 15px;
      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-     max-height: 25vh;
+     min-height: 25vh;
+     max-height: 35vh;
      display: flex;
      flex-direction: column;
      overflow-y: scroll;
@@ -333,25 +335,213 @@
      border: 2px solid blue;
  }
 
- @media (max-width: 960px) {
+ @media (max-width: 650px) {
      .Meeting-container {
          flex-direction: column;
+         height: 95vh;
      }
 
      .Video-main-content {
          width: 100%;
+         height: 75vh;
          border-right: none;
          border-bottom: 1px solid rgba(0, 0, 0, 0.1);
      }
 
+     .main-speaker {
+         width: 100%;
+         height: 30vh;
+     }
+
+     .video-participants {
+         width: 100%;
+         min-height: 28vh;
+         margin-top: 5px;
+     }
+
+     .video-box {
+         width: 100%;
+         height: 25vh;
+     }
+
+     .controls {
+         margin-top: 1rem;
+
+     }
+
+     .profile .dropdown-content {
+         right: 3rem;
+         bottom: 15rem;
+         min-width: 75vw;
+         padding: 8px 12px;
+     }
+
+     .aichatBox input {
+         padding: 14px 0.5rem 14px 1rem;
+     }
+
+     .aichatBox button {
+         border-radius: 50%;
+         margin: 0 0 0 0.5rem;
+         border: 2px solid skyblue;
+         padding: 0.5rem;
+         background: skyblue;
+         transition: 0.3s;
+         color: white;
+
+     }
+
      .sidebar {
-         flex-direction: row;
+         flex-direction: column;
          gap: 10px;
-         flex-wrap: wrap;
+         flex: 1.5;
+         padding: 20px;
+         overflow-y: scroll;
      }
 
      .card {
-         flex: 1;
-         min-width: 200px;
+         padding: 15px;
+         box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+         min-height: 20vh;
+         display: flex;
+         flex-direction: column;
+         overflow-y: scroll;
+     }
+
+     /* .participants-list {
+         min-height: 50vh;
+    
+     } */
+
+     .cardChat {
+         min-height: 50vh;
+         padding: 1rem;
+     }
+
+     .whole-message {
+         height: 30vh;
+         margin-top: 0.5rem;
+         /* background-color: white; */
+         overflow: auto;
+         border-radius: 1rem;
+         /* box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2); */
+         scrollbar-width: none;
+         /* Firefox */
+         -ms-overflow-style: none;
+         /* IE and Edge */
+     }
+
+     .chatBox input {
+         padding: 14px 0.2rem 14px 0.2rem;
+         border: none;
+         border-radius: 12px;
+         background: rgba(255, 255, 255, 0.1);
+         color: black;
+         font-size: 16px;
+         transition: 0.3s;
+         box-shadow: inset 1px 1px 6px rgba(0, 0, 0, 0.4), inset -1px -1px 4px rgba(255, 255, 255, 0.05);
+     }
+ }
+
+
+ @media (min-width: 650px) and (max-width: 1100px) {
+
+     .Video-main-content {
+         width: 55%;
+
+     }
+
+     .main-speaker {
+         width: 100%;
+         height: 45vh;
+     }
+
+     .video-participants {
+         width: 100%;
+         min-height: 35vh;
+         margin-top: 5px;
+     }
+
+     .video-box {
+         width: 100%;
+         height: 25vh;
+     }
+
+     .profile .dropdown-content {
+         right: 3rem;
+         bottom: 5rem;
+         min-width: 60vw;
+         padding: 8px 12px;
+     }
+
+     .card {
+         padding: 15px;
+         box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+         min-height: 30vh;
+     }
+
+     .cardChat {
+         max-height: 60vh;
+         padding: 0.5rem;
+     }
+
+     .whole-message {
+         height: 40vh;
+         margin-top: 0.5rem;
+         overflow: auto;
+         border-radius: 1rem;
+         scrollbar-width: none;
+         -ms-overflow-style: none;
+     }
+
+     .chatBox input {
+         padding: 14px 0.1rem 14px 0.1rem;
+     }
+
+     .chatBox button {
+         margin: 0 0 0 0.6rem;
+         padding: 0.4rem;
+         background: skyblue;
+     }
+ }
+
+
+ @media (min-width: 1100px) and (max-width: 1300px) {
+
+     .main-speaker {
+         width: 100%;
+         height: 42vh;
+     }
+
+     .video-participants {
+         width: 100%;
+         min-height: 40vh;
+         margin-top: 5px;
+     }
+
+     .profile .dropdown-content {
+         right: 10rem;
+         bottom: 4rem;
+         min-width: 40vw;
+         padding: 8px 12px;
+     }
+
+     .aichatBox input {
+         padding: 14px 5rem 14px 2rem;
+     }
+
+     .aichatBox button {
+         margin: 0 0 0 0.5rem;
+         padding: 1rem;
+     }
+
+     .chatBox input {
+         padding: 14px 1rem 14px 0.4rem;
+     }
+
+     .chatBox button {
+         margin: 0 0 0 0.6rem;
+         padding: 0.4rem;
+         background: skyblue;
      }
  }
