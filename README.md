@@ -218,14 +218,14 @@ uuid: ^11.1.0
 
 ---
 
-### 🐳 1st Way: Docker Development (Recommended)  
+###🐳 1st Way: Docker Development (Recommended)  
 
-#### 1️⃣ Clone the repository  
+1️⃣ Clone the repository  
 ```bash
 git clone <your-repo-url>
 cd FULL-STACK-REAL-TIME-VIDEO-CONFERENCING-PLATFORM
 ```
-###2️⃣ Set up environment variables
+2️⃣ Set up environment variables
 ```bash
 Create .env file in server/:
 NODE_ENV=development
@@ -240,19 +240,19 @@ Create .env file in client/:
 VITE_API_URL=http://localhost:3000
 ```
 
-###3️⃣ Run with Docker
+3️⃣ Run with Docker
 ```bash
 # Update docker-compose.yml with your environment variables
 docker-compose up --build
 ```
 
-###4️⃣ Access the application
+4️⃣ Access the application
 ```bash
 Frontend: http://localhost:5173
 
 Backend API: http://localhost:3000
 ```
-### 🐳 2nd Way: Run the app manually
+###🐳 2nd Way: Run the app manually
 Install dependencies
 ```bash
 # Backend dependencies
@@ -267,7 +267,7 @@ Set up environment variables (same as Docker option)
 
 Start services manually
 
-# Terminal 1: Start frontend
+###Terminal 1: Start frontend
 ```bash
 cd CLIENT
 npm run dev
@@ -280,12 +280,13 @@ nodemon index.js
 cd xeno-crm-backend
 npm run workers
 ```
+###Access Your Application
 ```bash
 Access the application
 Frontend: http://localhost:5173
 Backend API: http://localhost:3000
 ```
-
+---
 ###Required Service Setup
 
 Google AI Setup
@@ -297,6 +298,7 @@ Add the key to your environment variables
 
 MongoDB Atlas: Create a cluster and get connection string
 Redis Cloud: Create a database and get connection string
+---
 ## 🤝 Contributing
 
 Contributions are welcome! 🎉
@@ -329,10 +331,6 @@ This project is licensed under the **MIT License** – feel free to use and modi
 **Adarsh Dubey**
 
 * 💼 MERN Stack Developer | Java + DSA | DevOps Learner
-* 🌐 [LinkedIn](https://linkedin.com/) | [GitHub](https://github.com/)
+* 🌐 [LinkedIn](https://linkedin.com/adarshdubey20) | [GitHub](https://github.com/ADARSHDUBEY200)
 
 ---
-
-🔥 With this README, your project will look **super polished** and impress recruiters/interviewers.
-
-Do you also want me to **add GitHub badges for “Open Source Love”, “PRs Welcome”, and Tech Logos** to make it visually more attractive?
