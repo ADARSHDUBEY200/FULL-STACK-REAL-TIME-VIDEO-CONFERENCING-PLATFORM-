@@ -218,7 +218,7 @@ uuid: ^11.1.0
 
 ---
 
-###🐳 1st Way: Docker Development (Recommended)  
+### 🐳1st Way: Docker Development (Recommended)  
 
 1️⃣ Clone the repository  
 ```bash
@@ -273,8 +273,10 @@ Start services manually
 ```bash
 cd CLIENT
 npm run dev
+```
 
-# Terminal 2: Start backend
+### Terminal 2: Start backend
+```
 cd SERVER
 nodemon index.js
 ```
@@ -296,6 +298,7 @@ Add the key to your environment variables
 ### Database Setup
 
 MongoDB Atlas: Create a database and get connection string
+
 ---
 ## 🤝 Contributing
 
