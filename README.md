@@ -252,7 +252,9 @@ Frontend: http://localhost:5173
 
 Backend API: http://localhost:3000
 ```
-###🐳 2nd Way: Run the app manually
+---
+
+#🐳 2nd Way: Run the app manually
 Install dependencies
 ```bash
 # Backend dependencies
@@ -267,7 +269,7 @@ Set up environment variables (same as Docker option)
 
 Start services manually
 
-###Terminal 1: Start frontend
+Terminal 1: Start frontend
 ```bash
 cd CLIENT
 npm run dev
@@ -275,26 +277,23 @@ npm run dev
 # Terminal 2: Start backend
 cd SERVER
 nodemon index.js
-
-# Terminal 3: Start Redis consumers (for campaign processing)
-cd xeno-crm-backend
-npm run workers
 ```
-###Access Your Application
+
+Access Your Application
 ```bash
 Access the application
 Frontend: http://localhost:5173
 Backend API: http://localhost:3000
 ```
 ---
-###Required Service Setup
+Required Service Setup
 
 Google AI Setup
 Go to Google AI Studio
 Create an API key for Gemini
 Add the key to your environment variables
 
-###Database Setup
+Database Setup
 
 MongoDB Atlas: Create a cluster and get connection string
 Redis Cloud: Create a database and get connection string
