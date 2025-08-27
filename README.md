@@ -187,7 +187,24 @@ The platform follows a **client-server model** with **MVC architecture** on the 
         ├── aiRoutes.js
         └── userRoutes.js
 ```
-
+#📦 Key Dependencies
+```bash
+@emotion/react: ^11.14.0
+@emotion/styled: ^11.14.0
+@mui/icons-material: ^7.1.0
+@mui/material: ^7.1.0
+@tailwindcss/vite: ^4.1.12
+axios: ^1.10.0
+dotenv: ^17.2.1
+js-cookie: ^3.0.5
+lucide-react: ^0.513.0
+react: ^19.1.0
+react-dom: ^19.1.0
+react-router-dom: ^7.6.2
+socket.io-client: ^4.8.1
+tailwindcss: ^4.1.12
+uuid: ^11.1.0
+```
 ---
 
 ## ⚙️ Local Setup Instructions  
@@ -201,15 +218,15 @@ The platform follows a **client-server model** with **MVC architecture** on the 
 
 ---
 
-### 🐳 Option 1: Docker Development (Recommended)  
+### 🐳 1st Way: Docker Development (Recommended)  
 
 #### 1️⃣ Clone the repository  
 ```bash
 git clone <your-repo-url>
-cd talksphere
-
-2️⃣ Set up environment variables
-
+cd FULL-STACK-REAL-TIME-VIDEO-CONFERENCING-PLATFORM
+```
+###2️⃣ Set up environment variables
+```bash
 Create .env file in server/:
 NODE_ENV=development
 PORT=5000
@@ -220,19 +237,66 @@ OAUTH_CLIENT_SECRET=your_google_oauth_client_secret
 GEMINI_API_KEY=your_gemini_api_key
 
 Create .env file in client/:
-REACT_APP_API_URL=http://localhost:5000/api
+VITE_API_URL=http://localhost:3000
+```
 
-
-3️⃣ Run with Docker
+###3️⃣ Run with Docker
+```bash
 # Update docker-compose.yml with your environment variables
 docker-compose up --build
+```
 
-4️⃣ Access the application
+###4️⃣ Access the application
+```bash
+Frontend: http://localhost:5173
 
-Frontend: http://localhost:3000
+Backend API: http://localhost:3000
+```
+### 🐳 2nd Way: Run the app manually
+Install dependencies
+```bash
+# Backend dependencies
+cd SERVER
+npm install
 
-Backend API: http://localhost:5000
+# Frontend dependencies
+cd CLIENT
+npm install
+```
+Set up environment variables (same as Docker option)
 
+Start services manually
+
+# Terminal 1: Start frontend
+```bash
+cd CLIENT
+npm run dev
+
+# Terminal 2: Start backend
+cd SERVER
+nodemon index.js
+
+# Terminal 3: Start Redis consumers (for campaign processing)
+cd xeno-crm-backend
+npm run workers
+```
+```bash
+Access the application
+Frontend: http://localhost:5173
+Backend API: http://localhost:3000
+```
+
+###Required Service Setup
+
+Google AI Setup
+Go to Google AI Studio
+Create an API key for Gemini
+Add the key to your environment variables
+
+###Database Setup
+
+MongoDB Atlas: Create a cluster and get connection string
+Redis Cloud: Create a database and get connection string
 ## 🤝 Contributing
 
 Contributions are welcome! 🎉
