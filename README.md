@@ -121,18 +121,6 @@ The platform follows a **client-server model** with **MVC architecture** on the 
 
 ---
 
-# ⚙️ Local Setup Instructions  
-
-## 🔑 Prerequisites
-- **Node.js 18+**  
-- **Docker & Docker Compose** (recommended)  
-- **MongoDB** (local installation or Atlas account)  
-- **Google Cloud Console** (for OAuth setup)  
-- **Google AI Studio account** (for Gemini API key)  
-
----
-
-
 ## 📂 Project Structure
 
 ```
