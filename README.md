@@ -136,23 +136,56 @@ The platform follows a **client-server model** with **MVC architecture** on the 
 ## 📂 Project Structure
 
 ```
-TalkSphere/
-│
-├── client/                  # React Frontend
-│   ├── src/
-│   ├── public/
-│   └── package.json
-│
-├── server/                  # Express Backend (MVC)
-│   ├── controllers/
-│   ├── models/
-│   ├── routes/
-│   ├── config/
-│   └── server.js
-│
-├── docker-compose.yml
-├── Dockerfile
-└── README.md
+.
+├── CLIENT
+│   ├── eslint.config.js
+│   ├── index.html
+│   ├── package.json
+│   ├── public
+│   │   ├── image.jpg
+│   │   └── vite.svg
+│   ├── src
+│   │   ├── App.jsx
+│   │   ├── assets
+│   │   │   └── react.svg
+│   │   ├── index.css
+│   │   ├── main.jsx
+│   │   ├── pages
+│   │   │   ├── Authentication
+│   │   │   │   ├── Login.jsx
+│   │   │   │   └── Signup.jsx
+│   │   │   ├── CreateComponent.jsx
+│   │   │   ├── DashBoard
+│   │   │   │   ├── DashBoard.jsx
+│   │   │   │   └── SideBar.jsx
+│   │   │   ├── Home.jsx
+│   │   │   ├── Meeting.jsx
+│   │   │   └── VideoComponent.jsx
+│   │   └── styles
+│   │       ├── Authentication
+│   │       │   ├── Login.css
+│   │       │   └── Signup.css
+│   │       ├── Home.css
+│   │       ├── MeetingComponent.css
+│   │       └── VideoComponent.css
+│   ├── static.json
+│   └── vite.config.js
+└── SERVER
+    ├── Util
+    │   └── ScecretToken.js
+    ├── controllers
+    │   ├── AiController.js
+    │   ├── socketManger.js
+    │   └── userController.js
+    ├── index.js
+    ├── middlewares
+    │   └── Authmiddlewares.js
+    ├── models
+    │   └── userModel.js
+    ├── package.json
+    └── routes
+        ├── aiRoutes.js
+        └── userRoutes.js
 ```
 
 ---
