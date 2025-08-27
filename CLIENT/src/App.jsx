@@ -7,6 +7,7 @@ import DashBoard from './pages/DashBoard/DashBoard'
 import "./index.css"
 import Signup from './pages/Authentication/Signup'
 import Login from './pages/Authentication/Login'
+import CreateComponent from './pages/CreateComponent'
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
         <Route path='/signup' element={<Signup/>}/>
         <Route path='/login' element={<Login/>}/>
         <Route path='/video' element={<VideoComponent/>} />
+        <Route path='/createRoom'  element={<CreateComponent/>}/>
         <Route path='/video/:id' element={<Meeting/>}/>
         <Route path='/dashboard' element={<DashBoard/>}/>
       </Routes>

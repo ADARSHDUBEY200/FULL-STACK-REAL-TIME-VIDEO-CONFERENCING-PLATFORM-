@@ -84,8 +84,19 @@
 }
 
 
+.custom-link{
+    position: relative;
+    left: 1rem;
+    top: 1rem;
+}
+
+
 @media (max-width: 500px) {
     .form-wrapper {
         padding: 30px 20px;
+    }
+
+    .custom-link{
+        left : 1.6rem;
     }
 }

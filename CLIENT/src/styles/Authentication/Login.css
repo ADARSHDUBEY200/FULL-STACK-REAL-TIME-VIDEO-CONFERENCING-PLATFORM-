@@ -83,9 +83,19 @@
     box-shadow: 0 7px 20px rgba(0, 245, 201, 0.3);
 }
 
+.custom-link{
+    position: relative;
+    left: 7rem;
+    top: 1rem;
+}
+
 
 @media (max-width: 500px) {
     .form-wrapper {
         padding: 30px 20px;
+    }
+
+    .custom-link{
+        left : 1.6rem;
     }
 }

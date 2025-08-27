@@ -47,7 +47,7 @@ const Login = () => {
                     <input type="password" id="password" required name="password" value={formData.password} onChange={handleformData} />
                 </div>
                 <button type="submit" >LogIn</button>
-                <Link to={"/signup"}>Want to Signup</Link>
+                <Link to={"/signup"} className='custom-link'>Don't Have An Account ?</Link>
             </form>
         </div>
     )

@@ -9,6 +9,10 @@ const Home = () => {
   const handleJoin = ()=>{
     navigate("/video");
   }
+
+  const handleCreateRoomJoin = ()=>{
+    navigate("/createRoom");
+  }
   return (
     <div className="landing-page">
       <div className="hero-section">
@@ -20,7 +24,7 @@ const Home = () => {
         </p>
         <div className="button-group">
           <button className="btn primary" onClick={handleJoin}>Join Now</button>
-          <button className="btn outline" onClick={handleJoin}>Watch Demo</button>
+          <button className="btn outline" onClick={handleCreateRoomJoin}>Create Room</button>
         </div>
       </div>
 

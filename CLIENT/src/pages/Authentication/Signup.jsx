@@ -53,7 +53,7 @@ const Signup = () => {
                     <input type="password" id="password" required name="password" value={formData.password} onChange={handleformData} />
                 </div>
                 <button type="submit">SignUp 🚀</button>
-                <Link to={"/login"}>Want to Login</Link>
+                <Link to={"/login"} className='custom-link'>Already Have An Account ?</Link>
             </form>
         </div>
     )
