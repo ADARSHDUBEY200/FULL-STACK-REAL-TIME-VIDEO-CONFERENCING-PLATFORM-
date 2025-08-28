@@ -412,10 +412,10 @@ const Meeting = () => {
 
                         <div className='profile' >
                             <div className='content'>
-                                <button onClick={handleAiChatWindow}><i class="fa-solid fa-wand-magic-sparkles"></i></button>
+                                <button onClick={handleAiChatWindow}><i className="fa-solid fa-wand-magic-sparkles"></i></button>
                             </div>
                             {aiChatWindow == true ? <>
-                                <div class="dropdown-content">
+                                <div className="dropdown-content">
 
                                     <h3>Chat</h3>
                                     {aichats.length === 0 ? (
@@ -452,8 +452,8 @@ const Meeting = () => {
                         <h3>Participants</h3>
                         <div className="participants-list">
 
-                            {participants.map((participant) => {
-                                return <div className="participant"><img src="https://i.pravatar.cc/30?img=1" />{participant}</div>
+                            {participants.map((participant, index) => {
+                                return <div className="participant" key ={index}><img src="https://i.pravatar.cc/30?img=1" />{participant}</div>
                             })}
                         </div>
                     </div>
