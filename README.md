@@ -216,13 +216,11 @@ cd FULL-STACK-REAL-TIME-VIDEO-CONFERENCING-PLATFORM
 2️⃣ Set up environment variables
 ```bash
 Create .env file in server/:
-NODE_ENV=development
-PORT=5000
-MONGODB_URI=your_mongodb_connection_string
-JWT_SECRET=your_jwt_secret_32_characters_minimum
-OAUTH_CLIENT_ID=your_google_oauth_client_id
-OAUTH_CLIENT_SECRET=your_google_oauth_client_secret
-GEMINI_API_KEY=your_gemini_api_key
+
+GEMINI_API_KEY = <your gemini api key>
+TOKEN_KEY = <your token key>
+FRONTEND_URL = http://localhost:5173
+MONGO_URL = <your mongodb url>
 
 Create .env file in client/:
 VITE_API_URL=http://localhost:3000
